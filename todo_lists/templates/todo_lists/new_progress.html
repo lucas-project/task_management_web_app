@@ -1,0 +1,17 @@
+<!doctype html>
+{% extends "todo_lists/base.html" %}
+
+{% block content %}
+
+	<p><a href="{% url 'todo_lists:project' project.id %}">{{ project }}</a></p>
+	<a href="{% url 'todo_lists:edit_progress' project.id %}">Edit in-progress task</a>
+	
+	<p>Add a new in-progress task:</p>
+
+	<form action="{% url 'todo_lists:new_progress' project.id %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button name="submit">Add a in-progress task</button>
+	</form>
+	
+{% endblock content %}

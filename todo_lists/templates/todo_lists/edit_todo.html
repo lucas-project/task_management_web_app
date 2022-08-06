@@ -1,0 +1,16 @@
+<!doctype html>
+{% extends "todo_lists/base.html" %}
+
+{% block edit-todo %}
+
+	<p><a href="{% url 'todo_lists:project' project.id %}">{{ project }}</a></p>
+	
+	<p>Edit todo list:</p>
+
+	<form action="{% url 'todo_lists:edit_todo' todo.id %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button name="submit">Save changes</button>
+	</form>
+	
+{% endblock %}

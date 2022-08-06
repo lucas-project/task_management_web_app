@@ -1,0 +1,91 @@
+<!doctype html>
+{% extends "todo_lists/base.html" %}
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-main-function-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- add list button -->
+{% block todo %}
+
+	<div class="modal" id="todo_form">
+	  <div class="header">
+	    <div class="title">Add New List</div>
+	    <button id= "titleclosebtn" class="btn close-modal">&times;</button>
+	  </div>
+	  <div class="body">
+	    <input type="text" id="todo_input1" placeholder="Write a new task name" required/>
+	    <input type="text" id="todo_input2" placeholder="Write the task description"/>
+	    <input type="submit" value="Add" id="todo_submit" />
+	  </div>
+	</div>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-to-do-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- todo list -->
+{% load static %}
+    <div class="mainright">
+      <section class="inline">
+        <div class="toplist">
+          <div id="addDiv">To-do list
+            <a href="{% url 'todo_lists:new_todo' project.id %}" class="add_task"><img src="{% static '../static/img/addd.png'%}"  alt="add_task_pic" width="25" height="25"></a>
+          </div>       
+          
+
+        </div>
+
+        <div class="innerbox">
+          {% for todo in todos %}
+          <div class="inner">
+            <p>Name: {{ todo.name }}</p>
+            <p>details: {{ todo.details }}</p>
+            <div>
+              
+              <p><a href="{% url 'todo_lists:delete_todo' todo.id %}"><img src="{% static '../static/img/delete.png'%}"  alt="deletepic" width="12" height="15"></a></p>
+              <p><a href="{% url 'todo_lists:edit_todo' todo.id %}"><img src="{% static '../static/img/edit.png'%}"  alt="editpic" width="12" height="15"></a></p>
+              
+            </div>
+          </div>
+          {% empty %}
+            <li>No project has been added yet.</li>
+          {% endfor %} 
+        </div>
+
+      </section>
+
+ <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-in-progress-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --> 
+      <section class="inline">
+        <div class="toplist">
+          <div>In progress</div>
+        </div>
+
+        <div class="innerbox">
+          {% for progress in progresses %}
+          <div class="inner">
+            <p>Name: {{ progress.name }}</p>
+            <p>details: {{ progress.details }}</p>
+          </div>
+          {% empty %}
+            <li>No task is now in progress.</li>
+          {% endfor %}          
+        </div>
+
+      </section>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-done-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+      <section class="inline">
+        <div class="toplist">
+          <div>Done</div>
+        </div>
+        <div class="innerbox">
+          {% for done in dones %}
+          <div class="inner">
+            <p>Name: {{ done.name }}</p>
+            <p>details: {{ done.details }}</p>
+          </div>
+          {% empty %}
+            <li>No task is has been done.</li>
+          {% endfor %}
+          
+        </div>
+      </section>
+  	</div>
+ <footer>
+ </footer>
+ <div id="overlay"></div>
+ {% endblock %}
+
+

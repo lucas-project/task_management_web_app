@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="P&NP projectpage">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!--FontAwesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+        integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <!--Chartjs CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+  <link rel="stylesheet" href="{% static '../static/styles/pnpstyle.css'%}">
+  <script src="{% static '../static/js/todo.js'%}"></script>
+  <title>base.html</title>
+</head>
+<body>
+  <header>
+    <div class="header" >
+      <p><a href="{% url 'todo_lists:index' %}"><img src="{% static '../static/img/pnplogo.png'%}"  alt="pnplogo"></a></p>
+    </div>
+
+    <div class="search">
+      <div class="searchbar">
+        <img src="{% static '../static/img/search.png' %}" alt="search icon">
+    </div>    
+    </div>
+  </header>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-side-bar-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+  <!-- <div class="main"> -->
+    <div class="left">
+      <div id="profile">
+        <div id="inlineblock1">
+          <img src="{%static '../static/img/profile.png'%}" alt="profile pic">
+        </div>
+        <div id="inlineblock2">
+          <p>Job Title</p>
+          <p>User Name</p>
+        </div>
+
+      </div>
+      <div class="lefttag">
+        <p><a href="{% url 'todo_lists:projects' %}">To do list</a></p>
+      </div>
+      <div class="lefttag">
+        <p><a href="{% url 'todo_lists:visualisation' %}">Progress</a></p>
+      </div>
+      <div class="lefttag">
+        <p><a href="http://127.0.0.1:8000/project/assign">Assign</a></p>
+      </div>
+      <div class="lefttag">
+        <p><a href="{% url 'todo_lists:resourcepage' %}">Resource</a></p>
+      </div>
+      <div class="lefttag">
+        <p><a href="{% url 'todo_lists:wikiMain' %}">Wiki</a></p>
+        
+      </div>
+      <button class="logout">Log out</button>
+
+    </div>
+
+    <div>
+        <div class="maintop">
+        <p>Team Board</p>
+        </div>
+    </div>
+    {% block todo %} {% endblock %}
+    {% block projects %} {% endblock %}
+    {% block new-project %} {% endblock %}
+    {% block new-todo %} {% endblock %}
+    {% block edit-todo %} {% endblock %}
+    {% block visualisation %} {% endblock %}
+    {% block delete %} {% endblock %}
+    {% block delete_project %} {% endblock %}
+    {% block edit_project %} {% endblock %}
+    {% block resources %} {% endblock %}
+    {% block wiki %} {% endblock %}
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"></script>
+  <!-- </div> -->
+  {% block scripts %} {% endblock %}
+<footer>
+  <span style="color: white;">2021 PNP Tech Co.   Project Manage Soft Version 1.0.0</span>
+</footer>
+</body>
+</html>

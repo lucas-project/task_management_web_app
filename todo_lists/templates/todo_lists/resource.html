@@ -1,0 +1,60 @@
+<!doctype html>
+{% extends "todo_lists/base.html" %}
+
+{% block resources %}
+<div class="maintop">
+  <p>Resource</p>
+</div>
+<div>
+  <h2>Resource of the project</h2>
+  <p>Templete.<a href="http://127.0.0.1:8000/project/readresource1">Click here to read.</a> <a href="http://127.0.0.1:8000/project/resource1">Click here to download</a></p>
+  
+  <p>Static.<a href="http://127.0.0.1:8000/project/readresource2">Click here to read.</a> <a href="http://127.0.0.1:8000/project/resource2">Click here to download</a></p>
+  
+  <p>Data.<a href="http://127.0.0.1:8000/project/readresource3">Click here to read.</a> <a href="http://127.0.0.1:8000/project/resource3">Click here to download</a></p>
+  
+  <p>Project brief.<a href="http://127.0.0.1:8000/project/readresource4">Click here to read.</a> <a href="http://127.0.0.1:8000/project/resource4">Click here to download</a></p>
+
+  <h2>Resource online</h2>
+  <ul>
+      {% for resource in resource_list %}
+      <li>
+        <a href="checkresource{{resource.id}}"> {{resource.resource}}</a>
+      </li>
+      {% endfor %}
+  </ul>
+
+  <h2>Resource download</h2>
+  <ul>
+      {% for resource in resource_list %}
+      <li>
+        <a href="downloadresource{{resource.id}}"> {{resource.resource}}</a>
+      </li>
+      {% endfor %}
+  </ul>
+
+    <h2>Upload new resource</h2>
+    <form action="{% url 'todo_lists:upload' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div>
+         <p>Upload file
+         <input type="file" name="myfiles" multiple="">
+         </p>
+         <p>
+            <input type="submit" value="upload">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+         </p>
+      </div>
+  </form>
+</div>
+  
+{% endblock %}
+
+
+        

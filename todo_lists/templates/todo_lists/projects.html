@@ -1,0 +1,24 @@
+<!doctype html>
+{% extends "todo_lists/base.html" %}
+
+{% block projects %}
+{% load static %}
+	<p>Projects</p>
+	<a href="{% url 'todo_lists:new_project'%}">Add new project<img src="{% static '../static/img/addd.png'%}" alt="addpic" width="25" height="25"></a>
+	{% for project in projects %}
+	<section class="projectBox">
+					<a href="{% url 'todo_lists:project' project.id %}">{{ project.name }}</a>
+					
+					<a href="{% url 'todo_lists:delete_project' project.id %}"><img src="{% static '../static/img/delete_project.png'%}" alt="deletepic" width="20" height="25"></a>
+					<a href="{% url 'todo_lists:edit_project' project.id %}"><img src="{% static '../static/img/edit.png'%}" alt="editpic" width="25" height="25"></a>
+					<p>Name: {{ project.name }}</p>
+					<p>Due date: {{ project.due_date }}</p>
+					<p>project_code: {{ project.project_code }}</p>
+					<p>details: {{ project.details }}</p>
+					<p>team: {{ project.team }}</p>
+
+			{% empty %}
+			 	<span>No project has been added yet.</span>
+			{% endfor %}
+	</section>
+{% endblock %}

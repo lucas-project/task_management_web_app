@@ -1,0 +1,17 @@
+<!doctype html>
+{% extends "todo_lists/base.html" %}
+
+{% block new-todo %}
+
+	<p><a href="{% url 'todo_lists:project' project.id %}">{{ project }}</a></p>
+	
+	
+	<p>Add a new to-do task:</p>
+
+	<form action="{% url 'todo_lists:new_todo' project.id %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button name="submit">Add a task</button>
+	</form>
+	
+{% endblock %}
